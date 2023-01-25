@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="style.css">
+         
+    <!--<title>Login & Registration Form</title>-->
+</head>
+<body>
+    
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <span class="title">Login</span>
+
+                <!-- LOGIN FORM -->
+                <form action="#" class="loginForm">
+                    <!-- USERNAME OR EMAIL -->
+                    <div class="input-field">
+                        <input type="text" placeholder="Enter username or email" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+
+                    <!--PASSWORD  -->
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Enter your password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="logCheck">
+                            <label for="logCheck" class="text">Remember me</label>
+                        </div>
+                        
+                        <a href="#" class="text">Forgot password?</a>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="submit" value="Login" onclick="loginAction()">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Not a member?
+                        <a href="#" class="text signup-link">Signup Now</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- REGISTRATION FORM -->
+            <div class="form signup">
+                <span class="title">Registration</span>
+
+                <form action="#" class="signupForm">
+                    <!-- NAME -->
+                    <div class="input-field">
+                        <input type="text" placeholder="Enter username" required>
+                        <i class="uil uil-user"></i>
+                        <img src="icon-error.svg" class="error-icon" alt="error-img" />
+                        <p>Name</p>
+                    </div>
+                    
+
+                    <!-- EMAIL -->
+                    <div class="input-field">
+                        <input type="email" placeholder="Enter email" required>
+                        <i class="uil uil-envelope icon"></i>
+                        <img src="icon-error.svg" class="error-icon" alt="error-img" />
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Create a password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <img src="icon-error.svg" class="error-icon" alt="error-img" />
+
+                    </div>
+
+                    <!-- CONFIRM PASSWORD -->
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Confirm password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                        <img src="icon-error.svg" class="error-icon" alt="error-img" />
+
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="termCon">
+                            <label for="termCon" class="text">I accepted all terms and conditions</label>
+                        </div>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="submit" value="Signup" onclick="signupAction()">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Already a member?
+                        <a href="#" class="text login-link">Login Now</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
