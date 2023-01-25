@@ -73,7 +73,12 @@ const signupAction = function () {
 };
 
 function checkEmpty() {
-    return form[0].value != '' && form[1].value != '' && form[2].value != '' && form[3].value != '';
+    return (
+        form[0].value != '' && 
+        form[1].value != '' && 
+        form[2].value != '' && 
+        form[3].value != ''
+    );
 }
 
 // LOGIN VIA INDEXED DB

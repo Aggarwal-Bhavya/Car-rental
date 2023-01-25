@@ -35,6 +35,14 @@ body{
     transition: height 0.2s ease;
 }
 
+.container .cars{
+    display: flex;
+    align-items: center;
+    height: 700px;
+    width: 200%;
+    transition: height 0.2s ease;
+}
+
 
 .container .form{
     width: 50%;
