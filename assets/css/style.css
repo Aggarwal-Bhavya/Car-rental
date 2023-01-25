@@ -150,7 +150,7 @@ body {
   #REUSED STYLE
 \*-----------------------------------*/
 
-.container { padding-inline: 15px; }
+.carContainer { padding-inline: 15px; }
 
 button, a { transition: var(--transition); }
 
@@ -235,7 +235,7 @@ button, a { transition: var(--transition); }
 
 .header.active { box-shadow: var(--shadow-1); }
 
-.header .container {
+.header .carContainer {
   height: 70px;
   display: flex;
   justify-content: space-between;
@@ -855,7 +855,7 @@ button, a { transition: var(--transition); }
    * REUSED STYLE
    */
 
-  .container {
+  .carContainer {
     max-width: 540px;
     margin-inline: auto;
   }
@@ -906,7 +906,7 @@ button, a { transition: var(--transition); }
    * REUSED STYLE
    */
 
-  .container { max-width: 720px; }
+  .carContainer { max-width: 720px; }
 
 
 
@@ -1032,7 +1032,7 @@ button, a { transition: var(--transition); }
    * REUSED STYLE
    */
 
-  .container { max-width: 960px; }
+  .carContainer { max-width: 960px; }
 
 
 
@@ -1040,7 +1040,7 @@ button, a { transition: var(--transition); }
    * HERO
    */
 
-  .hero .container { width: 100%; }
+  .hero .carContainer { width: 100%; }
 
 
 
@@ -1095,7 +1095,7 @@ button, a { transition: var(--transition); }
    * REUSED STYLE
    */
 
-  .container { max-width: 1170px; }
+  .carContainer { max-width: 1170px; }
 
 
 
