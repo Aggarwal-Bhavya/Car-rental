@@ -423,15 +423,18 @@ button, a { transition: var(--transition); }
 .featured-car-link:is(:hover, :focus) ion-icon { color: var(--carolina-blue); }
 
 .featured-car-list {
-  display: grid;
+  /* display: grid; */
+  display: inline-flex;
   grid-template-columns: minmax(0, 1fr);
   gap: 30px;
+  margin: 5px 10px 15px;
 }
 
 .featured-car-card {
-  background: var(--gradient);
-  border: 1px solid var(--white);
-  border-radius: var(--radius-18);
+  /* background: var(--gradient); */
+  background-color: var(--white);
+  border: 2px solid rgb(217, 217, 217);
+  border-radius: var(--radius-14);
   padding: 10px;
   box-shadow: var(--shadow-1);
 }
@@ -474,9 +477,9 @@ button, a { transition: var(--transition); }
   font-family: var(--ff-nunito);
   font-size: var(--fs-6);
   font-weight: var(--fw-600);
-  padding: 3px 12px;
-  border: 2px dashed #7c94d7;
-  border-radius: var(--radius-14);
+  padding: 0.3rem;
+  border: 1.75px dashed #7c94d7;
+  border-radius: var(--radius-10);
 }
 
 .featured-car-card .card-list {
@@ -611,7 +614,7 @@ button, a { transition: var(--transition); }
 .get-start-card .card-title {
   color: var(--space-cadet);
   font-family: var(--ff-nunito);
-  font-weight: var(--fw-400);
+  font-weight: var(--fw-600);
   margin-bottom: 15px;
 }
 
@@ -1112,12 +1115,16 @@ button, a { transition: var(--transition); }
 
   .navbar-link {
     margin-bottom: 0;
-    font-weight: var(--fw-600);
+    /* font-weight: var(--fw-600); */
+    font-weight: bolder;
+    font-size: 22px;
   }
 
   .navbar-list {
     display: flex;
-    gap: 50px;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 25px;
   }
 
 

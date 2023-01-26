@@ -1,24 +1,24 @@
 // CREATING NEW CAR DATA IN INDEXEDDB
 const form = document.querySelector('.newCarForm');
 
-const newCarAction = function() {
+const newCarAction = function () {
     var idb = indexedDB.open('New Car', 1);
 
-    idb.onerror = function(e) {
+    idb.onerror = function (e) {
         console.log('Error faced!');
     };
 
-    idb.onupgradeneeded = function() {
+    idb.onupgradeneeded = function () {
         var request = idb.result;
-        request.createObjectStore('Cars', { autoIncrement: true});
+        request.createObjectStore('Cars', { autoIncrement: true });
     };
 
-    idb.onsuccess = function(e) {
+    idb.onsuccess = function (e) {
         var request = idb.result;
         var tx = request.transaction('Cars', 'readwrite');
         var store = tx.objectStore('Cars');
 
-        if(checkEmpty()) {
+        if (checkEmpty()) {
             alert('New car added!');
             store.put({
                 model: form[0].value,
@@ -27,7 +27,8 @@ const newCarAction = function() {
                 type: form[3].value,
                 average: form[4].value,
                 mode: form[5].value,
-                price: form[6].value
+                price: form[6].value,
+                availability: true
             });
             location.reload();
         } else {
@@ -39,9 +40,9 @@ const newCarAction = function() {
 
 function checkEmpty() {
     return (
-        form[0].value != '' && 
-        form[1].value != '' && 
-        form[2].value != '' && 
+        form[0].value != '' &&
+        form[1].value != '' &&
+        form[2].value != '' &&
         form[3].value != '' &&
         form[4].value != '' &&
         form[5].value != '' &&
@@ -113,8 +114,9 @@ function read() {
                                 <strong>₹${currRes.value.price}</strong> / month
                             </p>
 
-                            <button class="btn fav-btn" aria-label="Add to favourite list">
-                                <ion-icon name="heart-outline"></ion-icon>
+                            <button class="btn fav-btn">
+                                <ion-icon name="checkmark"></ion-icon> 
+                                <ion-icon name="ban"></ion-icon>
                             </button>
 
                             <button class="btn">Rent now</button>

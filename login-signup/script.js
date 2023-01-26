@@ -95,7 +95,7 @@ const loginAction = function() {
             let currRes = cursor.result;
             if((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
                 console.log(currRes.value);
-                window.location.href = "../Homepages/home.html";
+                window.location.href = "../User/home.html";
                 currRes.continue();
             } else {
                 console.log('Enter valid details')
