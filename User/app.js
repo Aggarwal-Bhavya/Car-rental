@@ -2,7 +2,7 @@
 const form = document.querySelector('.newCarForm');
 
 const newCarAction = function () {
-    var idb = indexedDB.open('New Car', 1);
+    var idb = indexedDB.open('All Cars', 2);
 
     idb.onerror = function (e) {
         console.log('Error faced!');
@@ -28,7 +28,9 @@ const newCarAction = function () {
                 average: form[4].value,
                 mode: form[5].value,
                 price: form[6].value,
-                availability: true
+                availability: true,
+                days: 0,
+                revenue: 0,
             });
             location.reload();
         } else {
@@ -53,8 +55,9 @@ function checkEmpty() {
 
 const divContainer = document.querySelector('.carContainer');
 
+
 function read() {
-    var idb = indexedDB.open('New Car', 1);
+    var idb = indexedDB.open('All Cars', 2);
     idb.onsuccess = function () {
         let request = idb.result;
         let transaction = request.transaction('Cars', 'readonly');
@@ -97,7 +100,7 @@ function read() {
                             <li class="card-list-item">
                                 <ion-icon name="speedometer-outline"></ion-icon>
 
-                                <span class="card-item-text">${currRes.value.average}km / 1-litre</span>
+                                <span class="card-item-text">${currRes.value.average}km/1-litre</span>
                             </li>
 
                             <li class="card-list-item">
@@ -111,15 +114,15 @@ function read() {
                         <div class="card-price-wrapper">
 
                             <p class="card-price">
-                                <strong>₹${currRes.value.price}</strong> / month
+                                <strong>₹${currRes.value.price}</strong>/day
                             </p>
 
                             <button class="btn fav-btn">
-                                <ion-icon name="checkmark"></ion-icon> 
-                                <ion-icon name="ban"></ion-icon>
+                                <ion-icon name="checkmark" id="availableIcon" style="display: block;"></ion-icon> 
+                                <ion-icon name="ban" id="unavailableIcon" style="display: none;"></ion-icon>
                             </button>
 
-                            <button class="btn">Rent now</button>
+                            <button class="btn" onclick="rentAction(${currRes.key});">Rent now</button>
 
                         </div>
 
@@ -129,6 +132,14 @@ function read() {
             </li>
         </ul>
                 `
+                // console.log(currRes.value.availability);
+                const availableIcon = document.getElementById('availableIcon');
+                const unavailableIcon = document.getElementById('unavailableIcon');
+                if (currRes.value.availability) {
+                    // console.log(currRes.value.availability);
+                    availableIcon.style.display = 'block';
+                    unavailableIcon.style.display = 'none';
+                }
                 currRes.continue();
             }
         }
@@ -136,3 +147,23 @@ function read() {
 };
 
 read();
+
+// Rent Action
+// let rentKey;
+// const rentAction = function (key) {
+//     console.log('rent action triggered');
+//     rentKey = key;
+//     console.log(rentKey);
+//     // location.href = 'rent.html';
+//     var idb = indexedDB.open('All Cars', 2);
+//     idb.onsuccess = function () {
+//         let request = idb.result;
+//         let transaction = request.transaction('Cars', 'readwrite');
+//         let store = transaction.objectStore('Cars');
+//         const data = store.get(key);
+//         // console.log(data);
+//         data.onsuccess = function(event) {
+//             console.log(event.target.result);
+//         }
+//     }
+// }
