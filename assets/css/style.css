@@ -1193,3 +1193,33 @@ button, a { transition: var(--transition); }
   .footer-list:last-of-type { width: 33.33%; }
 
 }
+
+
+/* Booking page CSS */
+/* Form for location, pickup and return date */
+.form-container form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input-box {
+  flex: 1 1 7rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box span {
+  font-weight: 300;
+  color: inherit;
+}
+
+.input-box input {
+  padding: 5px;
+  outline: none;
+  border: none;
+  background: var(--alice-blue-1);
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+}
