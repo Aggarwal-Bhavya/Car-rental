@@ -33,6 +33,85 @@ login.addEventListener("click", () => {
     container.classList.remove("active");
 });
 
+// REGISTRATION FORM VALIDATIONS
+// USERNAME
+const username = document.getElementById('username');
+
+const isValidUsername = (username) => {
+    const regex = /^[A-Za-z][A-Za-z0-9_]{7,29}$/;
+    // console.log(username.match(regex));
+    return username.match(regex);
+};
+
+username.addEventListener('input', (e) => {
+    if (username.value == '') {
+        username.parentElement.classList.remove('error');
+        // confirmUsername.innerHTML = 'Username is required';
+    } else if(!isValidUsername(username.value)) {
+        username.parentElement.classList.remove('error');
+        // confirmUsername.innerHTML = 'Provide a valid alphanumeric username of length 8-30';
+    } else {
+        username.parentElement.classList.add('error');
+    }
+});
+
+// EMAIL
+const email = document.getElementById('email');
+
+const isValidEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return email.match(regex);
+};
+
+email.addEventListener('input', (e) => {
+    if (email.value == '') {
+        email.parentElement.classList.remove('error');
+        // confirmEmail.innerHTML = 'Email is required';
+    } else if (!isValidEmail(email.value)) {
+        email.parentElement.classList.remove('error');
+        // confirmEmail.innerHTML = 'Please enter your email address in format: yourname@example.com';
+    } else {
+        email.parentElement.classList.add('error');
+    }
+});
+
+// PASSWORD
+const password = document.getElementById('password');
+
+const isValidPassword = (password) => {
+    // var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/;
+    // var regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\[\]:;<>,.?/~_+-=|]).{8,32}$/;
+    var regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$/;
+    return password.match(regex);
+}
+
+password.addEventListener('input', (e) => {
+    if (password.value == '') {
+        password.parentElement.classList.remove('error');
+        // confirmPassword.innerHTML = 'Password is required';
+    } else if (!isValidPassword(password.value)) {
+        password.parentElement.classList.remove('error');
+        // confirmPassword.innerHTML = 'Password must be at least 8 characters and must include 1 lowercase, 1 uppercase, 1 special character and 1 number';
+    } else {
+        password.parentElement.classList.add('error');
+    }
+});
+
+// CONFIRM PASSWORD
+const cPassword = document.getElementById('confirm-password');
+
+cPassword.addEventListener('input', (e) => {
+    if (cPassword.value == '') {
+        cPassword.parentElement.classList.remove('error');
+        // confirmcPassword.innerHTML = 'Please confirm your password';
+    } else if (cPassword.value != password.value) {
+        cPassword.parentElement.classList.remove('error');
+        // confirmcPassword.innerHTML = 'Passwords do not match';
+    } else {
+        cPassword.parentElement.classList.add('error');
+    }
+});
+
 // REGISTRATION FORM SUBMISSION: STORE DATA IN INDEXEDDB
 //Indexed DB code
 const form = document.querySelector('.signupForm');

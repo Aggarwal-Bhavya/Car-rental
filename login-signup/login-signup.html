@@ -63,8 +63,8 @@
                 <form action="#" class="signupForm">
                     <!-- NAME -->
                     <div class="input-field">
-                        <input type="text" placeholder="Enter username" required>
-                        <i class="uil uil-user"></i>
+                        <input type="text" placeholder="Enter username" id="username" required>
+                        <i class="uil uil-user icon"></i>
                         <img src="icon-error.svg" class="error-icon" alt="error-img" />
                         <!-- <p>Name</p> -->
                     </div>
@@ -72,14 +72,14 @@
 
                     <!-- EMAIL -->
                     <div class="input-field">
-                        <input type="email" placeholder="Enter email" required>
+                        <input type="email" placeholder="Enter email" id="email" required>
                         <i class="uil uil-envelope icon"></i>
                         <img src="icon-error.svg" class="error-icon" alt="error-img" />
                     </div>
 
                     <!-- PASSWORD -->
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Create a password" required>
+                        <input type="password" class="password" placeholder="Create a password" id="password" required>
                         <i class="uil uil-lock icon"></i>
                         <img src="icon-error.svg" class="error-icon" alt="error-img" />
 
@@ -87,7 +87,8 @@
 
                     <!-- CONFIRM PASSWORD -->
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Confirm password" required>
+                        <input type="password" class="password" placeholder="Confirm password" 
+                        id="confirm-password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                         <img src="icon-error.svg" class="error-icon" alt="error-img" />
