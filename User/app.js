@@ -114,7 +114,7 @@ function read() {
                         <div class="card-price-wrapper">
 
                             <p class="card-price">
-                                <strong>₹${currRes.value.price}</strong>/day
+                                <strong>₹${currRes.value.price}</strong>/hour
                             </p>
 
                             <button class="btn fav-btn">
