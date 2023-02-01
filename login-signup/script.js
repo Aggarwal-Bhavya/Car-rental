@@ -36,6 +36,7 @@ login.addEventListener("click", () => {
 // REGISTRATION FORM VALIDATIONS
 // USERNAME
 const username = document.getElementById('username');
+const confirmUsername = document.getElementById('errorUsername');
 
 const isValidUsername = (username) => {
     const regex = /^[A-Za-z][A-Za-z0-9_]{7,29}$/;
@@ -46,10 +47,10 @@ const isValidUsername = (username) => {
 username.addEventListener('input', (e) => {
     if (username.value == '') {
         username.parentElement.classList.remove('error');
-        // confirmUsername.innerHTML = 'Username is required';
+        confirmUsername.innerHTML = 'Username is required';
     } else if(!isValidUsername(username.value)) {
         username.parentElement.classList.remove('error');
-        // confirmUsername.innerHTML = 'Provide a valid alphanumeric username of length 8-30';
+        confirmUsername.innerHTML = 'Provide a valid alphanumeric username of length 8-30';
     } else {
         username.parentElement.classList.add('error');
     }
@@ -57,6 +58,7 @@ username.addEventListener('input', (e) => {
 
 // EMAIL
 const email = document.getElementById('email');
+const confirmEmail = document.getElementById('errorEmail');
 
 const isValidEmail = (email) => {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -66,10 +68,10 @@ const isValidEmail = (email) => {
 email.addEventListener('input', (e) => {
     if (email.value == '') {
         email.parentElement.classList.remove('error');
-        // confirmEmail.innerHTML = 'Email is required';
+        confirmEmail.innerHTML = 'Email is required';
     } else if (!isValidEmail(email.value)) {
         email.parentElement.classList.remove('error');
-        // confirmEmail.innerHTML = 'Please enter your email address in format: yourname@example.com';
+        confirmEmail.innerHTML = 'Please enter your email address in format: yourname@example.com';
     } else {
         email.parentElement.classList.add('error');
     }
@@ -77,6 +79,7 @@ email.addEventListener('input', (e) => {
 
 // PASSWORD
 const password = document.getElementById('password');
+const confirmPassword = document.getElementById('errorPassword');
 
 const isValidPassword = (password) => {
     // var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/;
@@ -88,10 +91,10 @@ const isValidPassword = (password) => {
 password.addEventListener('input', (e) => {
     if (password.value == '') {
         password.parentElement.classList.remove('error');
-        // confirmPassword.innerHTML = 'Password is required';
+        confirmPassword.innerHTML = 'Password is required';
     } else if (!isValidPassword(password.value)) {
         password.parentElement.classList.remove('error');
-        // confirmPassword.innerHTML = 'Password must be at least 8 characters and must include 1 lowercase, 1 uppercase, 1 special character and 1 number';
+        confirmPassword.innerHTML = 'Password must be 8+ including 1 lowercase, 1 uppercase, 1 special character and 1 number';
     } else {
         password.parentElement.classList.add('error');
     }
@@ -99,14 +102,15 @@ password.addEventListener('input', (e) => {
 
 // CONFIRM PASSWORD
 const cPassword = document.getElementById('confirm-password');
+const confirmcPassword = document.getElementById('errorConfirmPassword');
 
 cPassword.addEventListener('input', (e) => {
     if (cPassword.value == '') {
         cPassword.parentElement.classList.remove('error');
-        // confirmcPassword.innerHTML = 'Please confirm your password';
+        confirmcPassword.innerHTML = 'Please confirm your password';
     } else if (cPassword.value != password.value) {
         cPassword.parentElement.classList.remove('error');
-        // confirmcPassword.innerHTML = 'Passwords do not match';
+        confirmcPassword.innerHTML = 'Passwords do not match';
     } else {
         cPassword.parentElement.classList.add('error');
     }
@@ -175,9 +179,10 @@ const loginAction = function() {
             if((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
                 console.log(currRes.value);
                 window.location.href = "../User/home.html";
-                currRes.continue();
+                // currRes.continue();
             } else {
-                console.log('Enter valid details')
+                currRes.continue();
+                // console.log('Enter valid details')
             }
         }
     }
