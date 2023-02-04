@@ -1223,3 +1223,12 @@ button, a { transition: var(--transition); }
   border-radius: 0.5rem;
   font-size: 0.85rem;
 }
+
+#displayTotal {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  font-family: var(--ff-nunito);
+  font-size: var(--fs-4);
+  color: var(--space-cadet);
+}

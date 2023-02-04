@@ -3,8 +3,8 @@ var rentedCar = JSON.parse(localStorage.getItem("carDetails"));
 var cart = document.querySelector('.carContainer');
 function generateItems() {
     if (rentedCar.length != 0) {
-        console.log('Available car');
-        console.log(parseInt(rentedCar.price));
+        // console.log('Available car');
+        // console.log(parseInt(rentedCar.price));
         // var carPrice = parseInt(rentedCar.price)*24;
         // console.log(typeof(parseInt(rentedCar.price)));
         cart.innerHTML = `
@@ -56,14 +56,14 @@ function generateItems() {
                 <div class="card-price-wrapper">
 
                     <p class="card-price">
-                        <strong>₹${rentedCar.price}</strong>/day
+                        <strong>₹${rentedCar.price}</strong>/hour
                     </p>
 
                     <div class="form-container">
                         <form class="bookingForm">
                             <div class="input-box">
                                 <span>Location</span>
-                                <input type="search" name="" id="" placeholder="Search Places">
+                                <input type="search" name="" id="" placeholder="Enter Location">
                             </div>
 
                             <div class="input-box">
@@ -82,8 +82,10 @@ function generateItems() {
                             
                             </div>
                             
-                            <input type="button" name="" id="" class="btn" value="Book Now" onclick="bookingAction()">
+                            <input type="button" name="" id="" class="btn" value="View Total Fare" onclick="fareCalculation()">
                             <h1 id="displayTotal"></h1>
+                            <input type="button" name="" id="" class="btn" value="Confirm Booking" onclick="bookingAction()">
+
                             </div>
     </li>
 </ul>
@@ -93,27 +95,47 @@ function generateItems() {
 
 generateItems();
 
-// Based on form-container values, update data
-const form = document.querySelector('.bookingForm');
+// Calculating fare based on user input
+var form = document.querySelector('.bookingForm');
 var total = document.getElementById('displayTotal');
-const bookingAction = function() {
-    // alert('Booking successful!');
-    console.log('Booked');
-    console.log(form[0].value);
-    // console.log(form[1].value);
-    // console.log(form[2].value);
-    var date1 = new Date(form[1].value);
-    var date2 = new Date(form[2].value);
-    console.log(date1);
-    console.log(date2);
+var carPrice, date1, date2;
+
+var fareCalculation = function() {
+    date1 = new Date(form[1].value);
+    date2 = new Date(form[2].value);
+    // console.log(isValidDate(date1));
+    // console.log(isValidDate(date2));
+    
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    // console.log(today);
+
+    // if(date1 >= today) console.log('valid date');
 
     var differenceInTime = date2.getTime() - date1.getTime();
-    console.log(differenceInTime);
+    // console.log(differenceInTime);
 
     var differenceInDays = differenceInTime / (1000*3600*24);
-    console.log(differenceInDays);
+    // console.log(differenceInDays);
+    if(differenceInTime <= 0 || !isValidDate(date1) || !isValidDate(date2) || today > date1) {
+        alert('Enter valid dates!');
+    } else {
+        carPrice = parseInt(rentedCar.price)*24*differenceInDays;
+        // console.log(carPrice);
+        
+        total.innerText = 'Total Calculated Fare: ₹' + carPrice;   
+    }
+}
 
-    var carPrice = parseInt(rentedCar.price)*24*differenceInDays;
+// check function for valid date input
+var isValidDate = function(date) {
+    return date instanceof Date && !isNaN(date);
+}
+
+// Processing booking based on user's input
+var bookingAction = function() {
+    console.log('Booking');
     console.log(carPrice);
-    total.innerText = carPrice;
+    console.log(date1);
+    console.log(date2);
 }
