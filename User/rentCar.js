@@ -153,6 +153,7 @@ var bookingAction = function () {
         localStorage.setItem("carDetails", JSON.stringify(rentedCar));
         updateCarDetails(carPrice, differenceInDays);
         updateUserDetails(rentedCar, date1, date2);
+        alert('Booking Successful!');
     }
 }
 

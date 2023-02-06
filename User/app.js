@@ -52,7 +52,7 @@ function checkEmpty() {
     );
 };
 
-
+// DISPLAYING ALL CAR INFO
 var divContainer = document.querySelector('.carContainer');
 
 
