@@ -187,6 +187,7 @@ var loginAction = function () {
             if ((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
                 // console.log(currRes.value);
                 localStorage.setItem("userKey", JSON.stringify(currRes.key));
+                localStorage.setItem("code", "secret");
                 // console.log(currRes.key);
                 window.location.href = "../User/home.html";
             } else {
@@ -199,6 +200,7 @@ var loginAction = function () {
             let currRes = cursor2.result;
             if ((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
                 // console.log('Admin signed in');
+                localStorage.setItem("code", "secret");
                 window.location.href = "../Admin/home.html";
             } else {
                 currRes.continue();

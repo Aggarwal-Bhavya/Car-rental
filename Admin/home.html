@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap"
         rel="stylesheet">
-    <title>Document</title>
+    <title>Car-Rental-System</title>
 </head>
 <body>
     <nav class="navbar" data-navbar>
@@ -31,7 +31,7 @@
             </li>
     
             <li>
-                <a href="../login-signup/login-signup.html" class="navbar-link" data-nav-link>Logout</a>
+                <a href="../User/logout.html" class="navbar-link" data-nav-link>Logout</a>
             </li>
         </ul>
     </nav>
@@ -45,4 +45,13 @@
         </div>
     </section>
 </body>
+<script>
+    var check = localStorage.getItem("code");
+
+    if (check == "secret") {
+
+    } else {
+        window.location.href = "../login-signup/login-signup.html";
+    }
+</script>
 </html>
