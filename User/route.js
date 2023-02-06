@@ -1,6 +1,6 @@
 // // creating document click which watches the nav links only
 // document.addEventListener("click",(e) => {
-//     const { target } = e;
+//     var { target } = e;
 //     if(!target.matches("nav ul li a")) {
 //         // console.log('not nav-click')
 //         return;
@@ -11,7 +11,7 @@
 // });
 
 // // creating routes
-// const routes = {
+// var routes = {
 //     "/about": {
 //         template: "about.html",
 //         title: "About Us",
@@ -30,7 +30,7 @@
 // };
 
 // // function watching the url and calls the urlLocationHandler
-// const route = function(event) {
+// var route = function(event) {
 //     event = event || window.event;
 //     event.preventDefault();
 //     // window.history.pushstate(state, unused, target link)
@@ -39,14 +39,14 @@
 // };
 
 // // URL location handling function
-// const locationHandler = async function() {
-//     const location = window.location.pathname;
+// var locationHandler = async function() {
+//     var location = window.location.pathname;
 //     if(location.length == 0) {
 //         location = "/cars";
 //     }
 
-//     const route = routes[location];
-//     const html = await fetch(route.template).then((response) => response.text());
+//     var route = routes[location];
+//     var html = await fetch(route.template).then((response) => response.text());
 //     document.getElementById('root').innerHTML = html;
 //     document.title = route.title;
 // };
@@ -56,7 +56,7 @@
 // locationHandler();
 
 // document.addEventListener("click", (e) => {
-//     const { target } = e;
+//     var { target } = e;
 //     if (!target.matches("nav ul li a")) {
 //         return;
 //     }
@@ -64,7 +64,7 @@
 //     route();
 // });
 
-// const routes = {
+// var routes = {
 //     "#cars": {
 //         template: "cars.html",
 //         title: "Home",
@@ -82,7 +82,7 @@
 //     },
 // };
 
-// const route = (event) => {
+// var route = (event) => {
 //     event = event || window.event; // get window.event if event argument not provided
 //     event.preventDefault();
 //     // window.history.pushState(state, unused, target link);
@@ -90,16 +90,16 @@
 //     locationHandler();
 // };
 
-// const locationHandler = async () => {
-//     const location = window.location.pathname; // get the url path
+// var locationHandler = async () => {
+//     var location = window.location.pathname; // get the url path
 //     // if the path length is 0, set it to primary page route
 //     if (location.length == 0) {
 //         location = "#cars";
 //     }
 //     // get the route object from the urlRoutes object
-//     const route = routes[location];
+//     var route = routes[location];
 //     // get the html from the template
-//     const html = await fetch(route.template).then((response) => response.text());
+//     var html = await fetch(route.template).then((response) => response.text());
 //     // set the content of the content div to the html
 //     document.getElementById("root").innerHTML = html;
 //     // set the title of the document to the title of the route

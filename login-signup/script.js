@@ -1,4 +1,4 @@
-const container = document.querySelector(".container"),
+var container = document.querySelector(".container"),
     pwShowHide = document.querySelectorAll(".showHidePw"),
     pwFields = document.querySelectorAll(".password"),
     signUp = document.querySelector(".signup-link"),
@@ -35,11 +35,11 @@ login.addEventListener("click", () => {
 
 // REGISTRATION FORM VALIDATIONS
 // USERNAME
-const username = document.getElementById('username');
-const confirmUsername = document.getElementById('errorUsername');
+var username = document.getElementById('username');
+var confirmUsername = document.getElementById('errorUsername');
 
-const isValidUsername = (username) => {
-    const regex = /^[A-Za-z][A-Za-z0-9_]{7,29}$/;
+var isValidUsername = (username) => {
+    var regex = /^[A-Za-z][A-Za-z0-9_]{7,29}$/;
     // console.log(username.match(regex));
     return username.match(regex);
 };
@@ -57,11 +57,11 @@ username.addEventListener('input', (e) => {
 });
 
 // EMAIL
-const email = document.getElementById('email');
-const confirmEmail = document.getElementById('errorEmail');
+var email = document.getElementById('email');
+var confirmEmail = document.getElementById('errorEmail');
 
-const isValidEmail = (email) => {
-    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+var isValidEmail = (email) => {
+    var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return email.match(regex);
 };
 
@@ -78,10 +78,10 @@ email.addEventListener('input', (e) => {
 });
 
 // PASSWORD
-const password = document.getElementById('password');
-const confirmPassword = document.getElementById('errorPassword');
+var password = document.getElementById('password');
+var confirmPassword = document.getElementById('errorPassword');
 
-const isValidPassword = (password) => {
+var isValidPassword = (password) => {
     // var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/;
     // var regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\[\]:;<>,.?/~_+-=|]).{8,32}$/;
     var regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$/;
@@ -101,8 +101,8 @@ password.addEventListener('input', (e) => {
 });
 
 // CONFIRM PASSWORD
-const cPassword = document.getElementById('confirm-password');
-const confirmcPassword = document.getElementById('errorConfirmPassword');
+var cPassword = document.getElementById('confirm-password');
+var confirmcPassword = document.getElementById('errorConfirmPassword');
 
 cPassword.addEventListener('input', (e) => {
     if (cPassword.value == '') {
@@ -118,9 +118,9 @@ cPassword.addEventListener('input', (e) => {
 
 // REGISTRATION FORM SUBMISSION: STORE DATA IN INDEXEDDB
 //Indexed DB code
-const form = document.querySelector('.signupForm');
+var form = document.querySelector('.signupForm');
 
-const signupAction = function () {
+var signupAction = function () {
     var idb = indexedDB.open('Accounts', 1);
 
     idb.onerror = function (e) {
@@ -144,6 +144,7 @@ const signupAction = function () {
                 name: form[0].value,
                 email: form[1].value,
                 password: form[2].value,
+                bookingHistory: [],
                 // confirmPassword: form[3].value
             });
             location.reload();
@@ -165,8 +166,8 @@ function checkEmpty() {
 }
 
 // LOGIN VIA INDEXED DB
-const loginForm = document.querySelector('.loginForm');
-const loginAction = function() {
+var loginForm = document.querySelector('.loginForm');
+var loginAction = function() {
     var idb = indexedDB.open('Accounts', 1);
 
     idb.onsuccess = function(e) {
@@ -177,9 +178,10 @@ const loginAction = function() {
         cursor.onsuccess = function() {
             let currRes = cursor.result;
             if((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
-                console.log(currRes.value);
+                // console.log(currRes.value);
+                localStorage.setItem("userKey", JSON.stringify(currRes.key));
+                // console.log(currRes.key);
                 window.location.href = "../User/home.html";
-                // currRes.continue();
             } else {
                 currRes.continue();
                 // console.log('Enter valid details')

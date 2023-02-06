@@ -1,7 +1,7 @@
 // CREATING NEW CAR DATA IN INDEXEDDB
-const form = document.querySelector('.newCarForm');
+var form = document.querySelector('.newCarForm');
 
-const newCarAction = function () {
+var newCarAction = function () {
     var idb = indexedDB.open('All Cars', 2);
 
     idb.onerror = function (e) {
@@ -53,7 +53,7 @@ function checkEmpty() {
 };
 
 
-const divContainer = document.querySelector('.carContainer');
+var divContainer = document.querySelector('.carContainer');
 
 
 function read() {
@@ -133,8 +133,8 @@ function read() {
         </ul>
                 `
                 // console.log(currRes.value.availability);
-                const availableIcon = document.getElementById('availableIcon');
-                const unavailableIcon = document.getElementById('unavailableIcon');
+                var availableIcon = document.getElementById('availableIcon');
+                var unavailableIcon = document.getElementById('unavailableIcon');
                 if (currRes.value.availability) {
                     // console.log(currRes.value.availability);
                     availableIcon.style.display = 'block';
@@ -151,7 +151,7 @@ read();
 // Rent Action
 let rentKey;
 let carDetails;
-const rentAction = function (key) {
+var rentAction = function (key) {
     console.log('rent action triggered');
     rentKey = key;
     console.log(rentKey);
@@ -160,13 +160,15 @@ const rentAction = function (key) {
         let request = idb.result;
         let transaction = request.transaction('Cars', 'readwrite');
         let store = transaction.objectStore('Cars');
-        const data = store.get(rentKey);
+        var data = store.get(rentKey);
         // console.log(data);
         data.onsuccess = function(event) {
             // console.log(event.target.result);
             carDetails = event.target.result;
-            console.log(carDetails);
+            // console.log(carDetails);
+            // console.log(rentKey);
             localStorage.setItem('carDetails', JSON.stringify(carDetails));
+            localStorage.setItem('carKey', JSON.stringify(rentKey));
         }
     }
     location.href = 'rent.html';
