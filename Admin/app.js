@@ -1,58 +1,3 @@
-// CREATING NEW CAR DATA IN INDEXEDDB
-var form = document.querySelector('.newCarForm');
-
-var newCarAction = function () {
-    var idb = indexedDB.open('All Cars', 2);
-
-    idb.onerror = function (e) {
-        console.log('Error faced!');
-    };
-
-    idb.onupgradeneeded = function () {
-        var request = idb.result;
-        request.createObjectStore('Cars', { autoIncrement: true });
-    };
-
-    idb.onsuccess = function (e) {
-        var request = idb.result;
-        var tx = request.transaction('Cars', 'readwrite');
-        var store = tx.objectStore('Cars');
-
-        if (checkEmpty()) {
-            alert('New car added!');
-            store.put({
-                model: form[0].value,
-                year: form[1].value,
-                capacity: form[2].value,
-                type: form[3].value,
-                average: form[4].value,
-                mode: form[5].value,
-                price: form[6].value,
-                availability: true,
-                days: 0,
-                revenue: 0,
-            });
-            window.location.href = "../Admin/allCars.html";
-        } else {
-            alert('Fill up all fields!');
-            e.preventDefault();
-        }
-    }
-};
-
-function checkEmpty() {
-    return (
-        form[0].value != '' &&
-        form[1].value != '' &&
-        form[2].value != '' &&
-        form[3].value != '' &&
-        form[4].value != '' &&
-        form[5].value != '' &&
-        form[6].value != ''
-    );
-};
-
-
 // DISPLAYING ALL CAR INFO
 var divContainer = document.querySelector('.carContainer');
 
@@ -123,8 +68,6 @@ function read() {
                                 <ion-icon name="ban" id="unavailableIcon" style="display: none;"></ion-icon>
                             </button>
 
-                            <button class="btn" onclick="rentAction(${currRes.key});">Rent now</button>
-
                         </div>
 
                     </div>
@@ -148,29 +91,3 @@ function read() {
 };
 
 read();
-
-// Rent Action
-let rentKey;
-let carDetails;
-var rentAction = function (key) {
-    console.log('rent action triggered');
-    rentKey = key;
-    console.log(rentKey);
-    var idb = indexedDB.open('All Cars', 2);
-    idb.onsuccess = function () {
-        let request = idb.result;
-        let transaction = request.transaction('Cars', 'readwrite');
-        let store = transaction.objectStore('Cars');
-        var data = store.get(rentKey);
-        // console.log(data);
-        data.onsuccess = function(event) {
-            // console.log(event.target.result);
-            carDetails = event.target.result;
-            // console.log(carDetails);
-            // console.log(rentKey);
-            localStorage.setItem('carDetails', JSON.stringify(carDetails));
-            localStorage.setItem('carKey', JSON.stringify(rentKey));
-        }
-    }
-    location.href = 'rent.html';
-}

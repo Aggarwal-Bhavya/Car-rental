@@ -3,7 +3,7 @@ var divContainer = document.querySelector('.carContainer');
 var userKey = JSON.parse(localStorage.getItem("userKey"));
 var basket;
 function read() {
-    var idb = indexedDB.open('Accounts', 1);
+    var idb = indexedDB.open('Accounts', 2);
     idb.onsuccess = function () {
         let request = idb.result;
         let transaction = request.transaction('User', 'readonly');

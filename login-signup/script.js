@@ -48,7 +48,7 @@ username.addEventListener('input', (e) => {
     if (username.value == '') {
         username.parentElement.classList.remove('error');
         confirmUsername.innerHTML = 'Username is required';
-    } else if(!isValidUsername(username.value)) {
+    } else if (!isValidUsername(username.value)) {
         username.parentElement.classList.remove('error');
         confirmUsername.innerHTML = 'Provide a valid alphanumeric username of length 8-30';
     } else {
@@ -121,7 +121,7 @@ cPassword.addEventListener('input', (e) => {
 var form = document.querySelector('.signupForm');
 
 var signupAction = function () {
-    var idb = indexedDB.open('Accounts', 1);
+    var idb = indexedDB.open('Accounts', 2);
 
     idb.onerror = function (e) {
         console.log('Error faced!');
@@ -158,26 +158,33 @@ var signupAction = function () {
 
 function checkEmpty() {
     return (
-        form[0].value != '' && 
-        form[1].value != '' && 
-        form[2].value != '' && 
+        form[0].value != '' &&
+        form[1].value != '' &&
+        form[2].value != '' &&
         form[3].value != ''
     );
 }
 
 // LOGIN VIA INDEXED DB
 var loginForm = document.querySelector('.loginForm');
-var loginAction = function() {
-    var idb = indexedDB.open('Accounts', 1);
 
-    idb.onsuccess = function(e) {
+var loginAction = function () {
+    var idb = indexedDB.open('Accounts', 2);
+
+    idb.onsuccess = function (e) {
         var request = idb.result;
-        var tx = request.transaction('User', 'readonly');
-        var store = tx.objectStore('User');
-        var cursor = store.openCursor();
-        cursor.onsuccess = function() {
-            let currRes = cursor.result;
-            if((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
+        var tx1 = request.transaction('User', 'readonly');
+        var store1 = tx1.objectStore('User');
+        var cursor1 = store1.openCursor();
+
+        var tx2 = request.transaction('Admin', 'readonly');
+        var store2 = tx2.objectStore('Admin');
+        var cursor2 = store2.openCursor();
+
+        cursor1.onsuccess = function () {
+            let currRes = cursor1.result;
+            // console.log(currRes.value.name);
+            if ((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
                 // console.log(currRes.value);
                 localStorage.setItem("userKey", JSON.stringify(currRes.key));
                 // console.log(currRes.key);
@@ -187,5 +194,44 @@ var loginAction = function() {
                 // console.log('Enter valid details')
             }
         }
+
+        cursor2.onsuccess = function() {
+            let currRes = cursor2.result;
+            if ((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
+                // console.log('Admin signed in');
+                window.location.href = "../Admin/home.html";
+            } else {
+                currRes.continue();
+            }
+        }
+
     }
 }
+
+
+// ADMIN DATABASE
+var adminDetails = function (e) {
+    // e.preventDefault();
+    var idb = indexedDB.open('Accounts', 2);
+    idb.onupgradeneeded = function () {
+        var request = idb.result;
+        request.createObjectStore('Admin', { autoIncrement: true });
+    };
+
+    idb.onsuccess = function (e) {
+        e.preventDefault();
+        var request = idb.result;
+        var tx = request.transaction('Admin', 'readwrite');
+        var store = tx.objectStore('Admin');
+
+        // TO ADD ADMIN, DO IT STATICALLY
+
+        // store.put({
+        //     name: '',
+        //     email: 'admin2@gamil.com',
+        //     password: 'Admin@2',
+        // });
+
+    }
+};
+adminDetails();

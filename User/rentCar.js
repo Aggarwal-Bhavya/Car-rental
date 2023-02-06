@@ -154,6 +154,7 @@ var bookingAction = function () {
         updateCarDetails(carPrice, differenceInDays);
         updateUserDetails(rentedCar, date1, date2);
         alert('Booking Successful!');
+        location.href = 'history.html';
     }
 }
 
@@ -182,7 +183,7 @@ function updateCarDetails(price, bookingDays) {
 // function to update users car history
 var userKey = JSON.parse(localStorage.getItem("userKey"));
 function updateUserDetails(rentedCar, pickupDate, returnDate) {
-    var idb = indexedDB.open('Accounts', 1);
+    var idb = indexedDB.open('Accounts', 2);
     idb.onsuccess = function(e) {
         var request = idb.result;
         var tx = request.transaction('User', 'readwrite');
