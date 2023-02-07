@@ -177,9 +177,9 @@ var loginAction = function () {
         var store1 = tx1.objectStore('User');
         var cursor1 = store1.openCursor();
 
-        var tx2 = request.transaction('Admin', 'readonly');
-        var store2 = tx2.objectStore('Admin');
-        var cursor2 = store2.openCursor();
+        // var tx2 = request.transaction('Admin', 'readonly');
+        // var store2 = tx2.objectStore('Admin');
+        // var cursor2 = store2.openCursor();
 
         cursor1.onsuccess = function () {
             let currRes = cursor1.result;
@@ -192,20 +192,21 @@ var loginAction = function () {
                 window.location.href = "../User/home.html";
             } else {
                 currRes.continue();
+                location.reload();
                 // console.log('Enter valid details')
             }
         }
 
-        cursor2.onsuccess = function() {
-            let currRes = cursor2.result;
-            if ((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
-                // console.log('Admin signed in');
-                localStorage.setItem("code", "secret");
-                window.location.href = "../Admin/home.html";
-            } else {
-                currRes.continue();
-            }
-        }
+        // cursor2.onsuccess = function() {
+        //     let currRes = cursor2.result;
+        //     if ((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
+        //         // console.log('Admin signed in');
+        //         localStorage.setItem("adminCode", "adminSecret");
+        //         window.location.href = "../Admin/home.html";
+        //     } else {
+        //         currRes.continue();
+        //     }
+        // }
 
     }
 }

@@ -22,6 +22,7 @@ pwShowHide.forEach(eyeIcon => {
     })
 });
 
+// ADDING ADMIN
 var form = document.querySelector('.adminForm');
 
 var adminAction = function () {
@@ -65,4 +66,32 @@ function checkEmpty() {
         form[1].value != '' &&
         form[2].value != ''
     );
+}
+
+// LOGIN FOR ADMIN
+var adminLogin = document.querySelector('.adminLoginForm');
+
+var addLoginAction = function() {
+    var idb = indexedDB.open('Accounts', 2);
+
+    idb.onsuccess = function (e) {
+        var request = idb.result;
+
+        var tx = request.transaction('Admin', 'readonly');
+        var store = tx.objectStore('Admin');
+        var cursor = store.openCursor();
+
+        cursor.onsuccess = function() {
+            let currRes = cursor.result;
+            if ((currRes.value.name == adminLogin[0].value || currRes.value.email == adminLogin[0].value) && currRes.value.password == adminLogin[1].value) {
+                // console.log('Admin signed in');
+                localStorage.setItem("adminCode", "adminSecret");
+                window.location.href = "home.html";
+            } else {
+                currRes.continue();
+                location.reload();
+            }
+        }
+
+    }
 }
