@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../login-signup/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <title>Car-Rental-System</title>
+</head>
+
+<style>
+    .navbar-link:hover {
+        color: white;
+    }
+
+    .container .cars {
+        display: flex;
+        align-items: center;
+        height: 500px;
+        width: 200%;
+        transition: height 0.2s ease;
+    }
+</style>
+
+<body>
+    <div style="top: 0; position: absolute;">
+        <div>
+            <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+                    <li>
+                        <a href="home.html" class="navbar-link" data-nav-link>Home</a>
+                    </li>
+
+                    <li>
+                        <a href="allCars.html" class="navbar-link" data-nav-link>View All Cars</a>
+                    </li>
+
+                    <li>
+                        <a href="newCar.html" class="navbar-link" data-nav-link>Add New Car</a>
+                    </li>
+
+                    <li>
+                        <a href="newAdmin.html" class="navbar-link" data-nav-link>Add New Admin</a>
+                    </li>
+
+                    <li>
+                        <a href="analytics.html" class="navbar-link" data-nav-link>Analytics</a>
+                    </li>
+
+                    <li>
+                        <a href="../User/logout.html" class="navbar-link" data-nav-link>Logout</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <div class="container" style="margin: 10% 20% 0px 20%;">
+            <div class="cars">
+                <div class="form">
+                    <span class="title">Enter New Admin</span>
+
+                    <!-- LOGIN FORM -->
+                    <form class="adminForm">
+                        <!-- USERNAME OR EMAIL -->
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter username" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter email" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+
+                        <!--PASSWORD  -->
+                        <div class="input-field">
+                            <input type="password" class="password" placeholder="Enter your password" required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
+                        </div>
+
+                        <div class="input-field button">
+                            <input type="submit" value="Add New Admin" onclick="adminAction()">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="addAdmin.js">
+</script>
+<script>
+    var check = localStorage.getItem("code");
+
+    if (check == "secret") {
+
+    } else {
+        window.location.href = "../login-signup/login-signup.html";
+    }
+</script>
+</html>

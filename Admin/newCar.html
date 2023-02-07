@@ -6,59 +6,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../login-signup/style.css">
     <title>Car-Rental-System</title>
 </head>
+<style>
+    .navbar-link:hover {
+        color: white;
+    }
+
+</style>
 
 <body>
-    
-    <div class="container">
-        <div class="cars">
-            <div class="form">
-                <span class="title">New Car Details</span>
+    <div>
+        <nav class="navbar" data-navbar style="top: 0; position: sticky;">
+            <ul class="navbar-list">
+                <li>
+                    <a href="home.html" class="navbar-link" data-nav-link>Home</a>
+                </li>
 
-                <form action="#" class="newCarForm">
+                <li>
+                    <a href="allCars.html" class="navbar-link" data-nav-link>View All Cars</a>
+                </li>
 
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter car model" required>
-                        <i class="uil uil-car icon"></i>
-                    </div>
+                <li>
+                    <a href="newCar.html" class="navbar-link" data-nav-link>Add New Car</a>
+                </li>
 
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter car year" required>
-                        <i class="uil uil-schedule icon"></i>
-                    </div>
+                <li>
+                    <a href="newAdmin.html" class="navbar-link" data-nav-link>Add New Admin</a>
+                </li>
 
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter car capacity" required>
-                        <i class="uil uil-user-arrows icon"></i>
-                    </div>
+                <li>
+                    <a href="analytics.html" class="navbar-link" data-nav-link>Analytics</a>
+                </li>
 
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter car type" required>
-                        <i class="uil uil-pump icon"></i>
-                    </div>
+                <li>
+                    <a href="../User/logout.html" class="navbar-link" data-nav-link>Logout</a>
+                </li>
 
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter car average" required>
-                        <i class="uil uil-tachometer-fast-alt icon"></i>
-                    </div>
+            </ul>
+        </nav>
+        <div class="container" style="margin: 0 20% 0px 20%;">
+            <div class="cars">
+                <div class="form">
+                    <span class="title">New Car Details</span>
 
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter car mode" required>
-                        <i class="uil uil-streering icon"></i>
-                    </div>
+                    <form action="#" class="newCarForm">
 
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter car price/day" required>
-                        <i class="uil uil-card-atm icon"></i>
-                    </div>
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter car model" required>
+                            <i class="uil uil-car icon"></i>
+                        </div>
 
-                    <div class="input-field button">
-                        <input type="button" value="Add New Car" onclick="newCarAction()">
-                    </div>
-                </form>
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter car year" required>
+                            <i class="uil uil-schedule icon"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter car capacity" required>
+                            <i class="uil uil-user-arrows icon"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter car type" required>
+                            <i class="uil uil-pump icon"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter car average" required>
+                            <i class="uil uil-tachometer-fast-alt icon"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter car mode" required>
+                            <i class="uil uil-streering icon"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter car price/hour" required>
+                            <i class="uil uil-card-atm icon"></i>
+                        </div>
+
+                        <div class="input-field button">
+                            <input type="button" value="Add New Car" onclick="newCarAction()">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -74,4 +113,5 @@
         window.location.href = "../login-signup/login-signup.html";
     }
 </script>
+
 </html>

@@ -101,6 +101,7 @@ function getData() {
                 userValues.push(currRes.value.name);
 
                 // Array for booking count by a username
+                // console.log(currRes.value.bookingHistory.length)
                 bookingValues.push(currRes.value.bookingHistory.length);
 
                 // total sum spent by a user
@@ -174,7 +175,7 @@ function getData() {
                         monthCount[monthName] += obj[month];
                     });
                 });
-                console.log(monthCount);
+                // console.log(monthCount);
                 new Chart("myChart4", {
                     type: 'bar',
                     data: {
