@@ -78,50 +78,6 @@ var adminAction = function () {
         }
     }
 };
-//     idb.onsuccess = function (e) {
-//         // e.preventDefault();
-//         var request = idb.result;
-//         var foundAdmin = false;
-//         var foundEmail = false;
-//         var tx = request.transaction('Admin', 'readwrite');
-//         var store = tx.objectStore('Admin');
-//         var cursor = store.openCursor();
-
-//         cursor.onsuccess = function () {
-//             var currRes = cursor.result;
-//             if (currRes) {
-//                 if (currRes.value.name == form[0].value) {
-//                     foundAdmin = true;
-//                 }
-//                 if (currRes.value.email == form[1].value) {
-//                     foundEmail = true;
-//                 }
-//                 currRes.continue();
-//             } else {
-//                 if (foundEmail) {
-//                     alert('Email already exists!');
-                   
-//                 } else if (foundAdmin) {
-//                     alert('Username already exists!');
-//                 } else {
-//                     if (checkEmpty()) {
-//                         store.put({
-//                             name: form[0].value,
-//                             email: form[1].value,
-//                             password: form[2].value,
-//                         });
-//                         alert('New Admin Addition Successful!');
-//                         location.reload();
-
-//                     } else {
-//                         alert('Fill up all fields!')
-//                         e.preventDefault();
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// };
 
 function checkEmpty() {
     return (
