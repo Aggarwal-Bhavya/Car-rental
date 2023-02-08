@@ -135,23 +135,45 @@ var signupAction = function () {
     idb.onsuccess = function (e) {
         // e.preventDefault();
         var request = idb.result;
+        var foundUsername = false;
+        var foundEmail = false;
         var tx = request.transaction('User', 'readwrite');
         var store = tx.objectStore('User');
+        var cursor = store.openCursor();
 
-        if (checkEmpty()) {
-            alert('User registered successfully! Login NOW!');
-            store.put({
-                name: form[0].value,
-                email: form[1].value,
-                password: form[2].value,
-                bookingHistory: [],
-                // confirmPassword: form[3].value
-            });
-            location.reload();
-
-        } else {
-            alert('Fill up all fields!')
-            e.preventDefault();
+        cursor.onsuccess = function() {
+            var currRes = cursor.result;
+            if(currRes) {
+                if(currRes.value.name == form[0].value) {
+                    foundUsername = true;
+                }
+                if(currRes.value.email == form[1].value) {
+                    foundEmail = true;
+                }
+                currRes.continue();
+            } else {
+                if(foundEmail) {
+                    alert('Email already exists!');
+                } else if(foundUsername) {
+                    alert('Username already exists!');
+                } else {
+                    if (checkEmpty()) {
+                            // console.log('User hello')
+                            store.put({
+                                name: form[0].value,
+                                email: form[1].value,
+                                password: form[2].value,
+                                bookingHistory: [],
+                                // confirmPassword: form[3].value
+                            });
+                            alert('User registered successfully! Login NOW!');
+                            location.reload();
+                    } else {
+                        alert('Fill up all fields!')
+                        e.preventDefault();
+                    }
+                }
+            }
         }
     }
 };
@@ -177,9 +199,6 @@ var loginAction = function () {
         var store1 = tx1.objectStore('User');
         var cursor1 = store1.openCursor();
 
-        // var tx2 = request.transaction('Admin', 'readonly');
-        // var store2 = tx2.objectStore('Admin');
-        // var cursor2 = store2.openCursor();
 
         cursor1.onsuccess = function () {
             let currRes = cursor1.result;
@@ -196,18 +215,6 @@ var loginAction = function () {
                 // console.log('Enter valid details')
             }
         }
-
-        // cursor2.onsuccess = function() {
-        //     let currRes = cursor2.result;
-        //     if ((currRes.value.name == loginForm[0].value || currRes.value.email == loginForm[0].value) && currRes.value.password == loginForm[1].value) {
-        //         // console.log('Admin signed in');
-        //         localStorage.setItem("adminCode", "adminSecret");
-        //         window.location.href = "../Admin/home.html";
-        //     } else {
-        //         currRes.continue();
-        //     }
-        // }
-
     }
 }
 

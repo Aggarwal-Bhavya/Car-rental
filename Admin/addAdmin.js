@@ -36,29 +36,92 @@ var adminAction = function () {
         var request = idb.result;
         request.createObjectStore('Admin', { autoIncrement: true });
     };
-
     idb.onsuccess = function (e) {
         // e.preventDefault();
         var request = idb.result;
+        var foundUsername = false;
+        var foundEmail = false;
         var tx = request.transaction('Admin', 'readwrite');
         var store = tx.objectStore('Admin');
+        var cursor = store.openCursor();
 
-        if (checkEmpty()) {
-            alert('New Admin Addition Successful!');
-            store.put({
-                name: form[0].value,
-                email: form[1].value,
-                password: form[2].value,
-                // confirmPassword: form[3].value
-            });
-            location.reload();
-
-        } else {
-            alert('Fill up all fields!')
-            e.preventDefault();
+        cursor.onsuccess = function(e) {
+            var currRes = cursor.result;
+            if(currRes) {
+                if(currRes.value.name == form[0].value) {
+                    foundUsername = true;
+                }
+                if(currRes.value.email == form[1].value) {
+                    foundEmail = true;
+                }
+                currRes.continue();
+            } else {
+                if(foundEmail) {
+                    alert('Email already exists!');
+                } else if(foundUsername) {
+                    alert('Admin name already exists!');
+                } else {
+                    if (checkEmpty()) {
+                            store.put({
+                                name: form[0].value,
+                                email: form[1].value,
+                                password: form[2].value,
+                            });
+                            alert('New Admin Addition Successful!');
+                            location.reload();
+                    } else {
+                        alert('Fill up all fields!')
+                        e.preventDefault();
+                    }
+                }
+            }
         }
     }
 };
+//     idb.onsuccess = function (e) {
+//         // e.preventDefault();
+//         var request = idb.result;
+//         var foundAdmin = false;
+//         var foundEmail = false;
+//         var tx = request.transaction('Admin', 'readwrite');
+//         var store = tx.objectStore('Admin');
+//         var cursor = store.openCursor();
+
+//         cursor.onsuccess = function () {
+//             var currRes = cursor.result;
+//             if (currRes) {
+//                 if (currRes.value.name == form[0].value) {
+//                     foundAdmin = true;
+//                 }
+//                 if (currRes.value.email == form[1].value) {
+//                     foundEmail = true;
+//                 }
+//                 currRes.continue();
+//             } else {
+//                 if (foundEmail) {
+//                     alert('Email already exists!');
+                   
+//                 } else if (foundAdmin) {
+//                     alert('Username already exists!');
+//                 } else {
+//                     if (checkEmpty()) {
+//                         store.put({
+//                             name: form[0].value,
+//                             email: form[1].value,
+//                             password: form[2].value,
+//                         });
+//                         alert('New Admin Addition Successful!');
+//                         location.reload();
+
+//                     } else {
+//                         alert('Fill up all fields!')
+//                         e.preventDefault();
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// };
 
 function checkEmpty() {
     return (
@@ -71,7 +134,7 @@ function checkEmpty() {
 // LOGIN FOR ADMIN
 var adminLogin = document.querySelector('.adminLoginForm');
 
-var addLoginAction = function() {
+var addLoginAction = function () {
     var idb = indexedDB.open('Accounts', 2);
 
     idb.onsuccess = function (e) {
@@ -81,7 +144,7 @@ var addLoginAction = function() {
         var store = tx.objectStore('Admin');
         var cursor = store.openCursor();
 
-        cursor.onsuccess = function() {
+        cursor.onsuccess = function () {
             let currRes = cursor.result;
             if ((currRes.value.name == adminLogin[0].value || currRes.value.email == adminLogin[0].value) && currRes.value.password == adminLogin[1].value) {
                 // console.log('Admin signed in');
